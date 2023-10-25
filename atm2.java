@@ -1,10 +1,14 @@
+// account number is 123456
+// password is 0000
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class atm2 {
     private static double amount = 10000;
-    private static JPasswordField active=new JPasswordField();
+    private static JTextField active=new JTextField();
+    
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setSize(500, 600);
@@ -26,13 +30,15 @@ public class atm2 {
         frame.add(l2);
         frame.add(l3);
 
-        JPasswordField tf = new JPasswordField(10);
+        JTextField tf = new JTextField(10);
         tf.setBounds(200, 110, 150, 25);
         frame.add(tf);
+        String acc=tf.getText();
 
-        JPasswordField pass = new JPasswordField(10);
+        JTextField pass = new JTextField(10);
         pass.setBounds(200, 160, 150, 25);
         frame.add(pass);
+        String pas=pass.getText();
         active=tf;
 
 
@@ -87,8 +93,8 @@ public class atm2 {
         next.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String account = tf.getText();
-                char[] password = pass.getPassword();
-                if (!account.isEmpty() && password.length > 0) {
+                String password = pass.getText();
+                if(account.equals("123456")&& password.equals("0000")){
                     JFrame frame2 = new JFrame();
                     frame2.setSize(500, 600);
                     frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,11 +107,11 @@ public class atm2 {
                     l1.setForeground(Color.BLUE);
                     frame2.add(l1);
 
-                    char[] accountt=tf.getPassword();
+                    String accountt=tf.getText();
                     JLabel l2 = new JLabel("Account number: "+String.valueOf(accountt));
                     l2.setBounds(50,100,400,60);
                     l2.setFont(new Font(null,Font.BOLD,15));
-                    char[] passwordd=pass.getPassword();
+                    String passwordd=pass.getText();
                     JLabel l3=new JLabel("Password: "+String.valueOf(passwordd));
                     l3.setBounds(50,150,400,60);
                     l3.setFont(new Font(null,Font.BOLD,15));
@@ -335,11 +341,16 @@ public class atm2 {
 
                     frame2.setVisible(true);
                     frame.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(frame, "Empty fields", "Error", JOptionPane.WARNING_MESSAGE);
-                }
+                } 
+            
+            else{
+                JOptionPane.showMessageDialog(frame,"Wrong password or account number","error",JOptionPane.WARNING_MESSAGE);
             }
+        }
         });
+        
+                
+                
 
         frame.setVisible(true);
         
